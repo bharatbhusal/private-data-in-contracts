@@ -4,7 +4,8 @@ pragma solidity ^0.8.13;
 import "forge-std/Script.sol";
 import "forge-std/console2.sol";
 import "../src/CTF1.sol";
-import "../src/Converter.sol";
+import "../src/StringBytes32.sol";
+import "../src/StringAddress.sol";
 
 contract AccessPrivateData is Script {
     function getPrivateData(
@@ -20,17 +21,16 @@ contract AccessPrivateData is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        StringToBytes32 converter = new StringToBytes32();
-
-        string
-            memory privateState = "0x68ffc335fd64ad387762ed58477f547ae0f06d4e49e65aabce8956718e1c0a45";
+        StringBytes32 stringBytes32Converter = new StringBytes32();
+        StringAddress stringAddressConverter = new StringAddress();
 
         uint256 privateStateSlot = 1;
-        bytes32 password = converter.stringToBytes32(privateState);
-        CTF1 ctf = new CTF1(password);
+        address contractAddress = stringAddressConverter.stringToAddress(
+            "0x89d5b48f3974A05b4BF816aebA12D401c0ebb003"
+        );
 
-        string memory privateData = converter.bytes32ToString(
-            getPrivateData(privateStateSlot, address(ctf))
+        string memory privateData = stringBytes32Converter.bytes32ToString(
+            getPrivateData(privateStateSlot, contractAddress)
         );
 
         console2.log(privateData);
