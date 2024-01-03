@@ -27,40 +27,21 @@ $ forge build
 $ forge test
 ```
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
 ### Anvil
 
 ```shell
 $ anvil
 ```
 
-### Deploy
+### Deploy CTF1PrivateData
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+forge script script/CTF1PrivateData.s.sol:AccessPrivateData
 ```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
+### Deploy PrivateDataAccess
 
 ```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+$ source .env
+
+$ forge script script/AccessPrivateData.s.sol:AccessPrivateData --fork-url $GOERLI_RPC_URL --broadcast
 ```

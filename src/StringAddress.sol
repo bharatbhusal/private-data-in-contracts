@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 contract StringAddress {
     function stringToAddress(string memory s) public pure returns (address) {
-        require(bytes(s).length == 40, "Invalid address length");
+        require(bytes(s).length == 42, "Invalid address length");
 
         // Use typecast to convert the hexadecimal string to an address
         return address(uint160(uint256(keccak256(abi.encodePacked(s)))));

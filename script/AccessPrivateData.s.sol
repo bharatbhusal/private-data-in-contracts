@@ -13,7 +13,7 @@ contract AccessPrivateData is Script {
         address targetContract
     ) public view returns (bytes32) {
         bytes32 slotVal = vm.load(targetContract, bytes32(slotNo));
-
+        console2.logBytes32(slotVal);
         return slotVal;
     }
 
@@ -24,7 +24,7 @@ contract AccessPrivateData is Script {
         StringBytes32 stringBytes32Converter = new StringBytes32();
         StringAddress stringAddressConverter = new StringAddress();
 
-        uint256 privateStateSlot = 1;
+        uint256 privateStateSlot = 0;
         address contractAddress = stringAddressConverter.stringToAddress(
             "0x89d5b48f3974A05b4BF816aebA12D401c0ebb003"
         );
@@ -34,6 +34,7 @@ contract AccessPrivateData is Script {
         );
 
         console2.log(privateData);
+        console2.log("hi");
         vm.stopBroadcast();
     }
 }

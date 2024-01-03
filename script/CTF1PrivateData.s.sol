@@ -17,15 +17,8 @@ contract AccessPrivateData is Script {
     }
 
     function run() public {
-        // // Retrieve the private key from the environment variable
-        // uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
-        // // Check if the private key retrieval is successful
-        // require(deployerPrivateKey != 0, "Private key not provided");
-
-        // // Start broadcast with the retrieved private key
-        // vm.startBroadcast();
-
+        
         StringBytes32 converter = new StringBytes32();
 
         string
@@ -42,9 +35,10 @@ contract AccessPrivateData is Script {
         string memory privateDataString = converter.bytes32ToString(
             privateData
         );
-        console2.log(privateDataString);
 
-        // // Stop broadcast
-        // vm.stopBroadcast();
+        console2.log("Actually Private State: ");
+        console2.log(privateState);
+        console2.log("Optained Private Value: ");
+        console2.log(privateDataString);
     }
 }
