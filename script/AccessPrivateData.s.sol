@@ -13,16 +13,12 @@ contract AccessPrivateData is Script {
         return slotVal;
     }
 
-    function run() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
+    function run() public view {
         uint256 privateStateSlot = 1;
         address contractAddress = 0x89d5b48f3974A05b4BF816aebA12D401c0ebb003;
 
         bytes32 privateData = getPrivateData(privateStateSlot, contractAddress);
 
         console2.logBytes32(privateData);
-        vm.stopBroadcast();
     }
 }
